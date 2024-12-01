@@ -6,6 +6,7 @@ import ServicePage from './domain/ServicePage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import DesignPage from './domain/DesignPage';
+import GifPage from './domain/GifPage';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage isDarkMode={isDarkMode}/>} />
           <Route path="/services" element={<ServicePage isDarkMode={isDarkMode} />}/>
+          <Route path="/gif" element={<GifPage/>}/>
           <Route path="/services/design" element={<DesignPage/>}/>
         </Routes>
       <Footer isDarkMode={isDarkMode}/>
