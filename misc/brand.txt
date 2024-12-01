@@ -1,0 +1,32 @@
+ 
+1. Brand Essentials: 
+   - Brand name: Zomato 
+   - Logo specifications: Red circular logo with white fork icon; minimum clear space of 20% of logo 
+height on all sides 
+   - Tagline: "Discover great food & drinks" 
+   - Brand voice: Friendly, foodie-focused, slightly quirky 
+   - Core values: Passion for food, customer satisfaction, innovation, sustainability 
+   - USP: Extensive restaurant network, real-time delivery tracking, user reviews and ratings 
+ 
+2. Visual Guidelines: 
+   - Color palette:  
+     Primary: Red (#CB202D), White (#FFFFFF) 
+     Secondary: Black (#000000), Gray (#E23744) 
+   - Typography:  
+     Headings: Proxima Nova Bold 
+     Body: Open Sans Regular 
+   - Imagery style: Vibrant food photography, lifestyle images of people enjoying meals 
+ 
+3. Target Audience Information: 
+   - Demographics: Adults 18-45, urban dwellers, middle to upper-middle income 
+   - Psychographics: Food enthusiasts, busy professionals, convenience seekers 
+   - Geographic locations: Major cities and urban areas 
+   - Behavioral traits: Frequent mobile app users, social media active, regular online shoppers 
+ 
+4. Product/Service Information: 
+   - Key features: Food delivery, restaurant discovery, table reservations, customer reviews 
+   - Pricing: Free app download, service fees vary by restaurant 
+ 
+5. Campaign-Specific Guidelines: 
+   - Objectives: Increase app downloads, boost order frequency 
+   - Key messaging: Variety of cuisines, quick delivery, special offers 

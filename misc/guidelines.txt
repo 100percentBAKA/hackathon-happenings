@@ -1,0 +1,31 @@
+ 
+1. Visual Guidelines:  
+- Color palette:  
+Primary: Red (#CB202D), White (#FFFFFF)  
+Secondary: Black (#000000), Gray (#E23744)  
+- Typography:  
+Headings: Proxima Nova Bold  
+Body: Open Sans Regular  
+- Imagery style: Vibrant food photography, lifestyle images of people enjoying meals  
+ 
+2. Product/Service Information:  
+- Key features: Food delivery, restaurant discovery, table reservations, customer reviews  
+- Pricing: Free app download, service fees vary by restaurant  
+ 
+3. Campaign-Specific Guidelines:  
+- Objectives: Increase app downloads, boost order frequency  
+- Key messaging: Variety of cuisines, quick delivery, special offers 
+- CTA preferences: "Order Now", "Explore Restaurants", "Get the App"  
+ 
+4. Channel-Specific Requirements:  
+- Ad formats: Square (1:1) for Instagram, Landscape (16:9) for YouTube  
+- Platform focus: Instagram, Facebook, Google Ads, YouTube  
+ 
+5. Seasonal Considerations:  
+- Highlight festive menus during holidays  
+- Summer campaign focusing on refreshing drinks and light meals  
+ 
+6. Compliance Requirements:  
+- Disclaimer: "Delivery times may vary based on restaurant and location"  
+- Age restriction notice for alcohol delivery where applicable  
+ 
