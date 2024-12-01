@@ -1,134 +1,225 @@
-import React,{useState,useMemo} from 'react'
-import { FaUpload, FaFont } from 'react-icons/fa';
+import React from 'react';
 import Select from 'react-select';
-import countryList from 'react-select-country-list'
-import { Country, City } from 'country-state-city'
+import { FileUpload } from './FileUpload';
+import { Button } from './ui/Button';
+import { Card, CardHeader, CardContent, CardFooter } from './ui/Card';
+import { Country, City } from 'country-state-city';
+import countryList from 'react-select-country-list';
+import { FaRuler, FaGlobe, FaFileUpload } from 'react-icons/fa';
 
-export default function DesignForm({setRegion,region,handleFileChange,handleSubmit,resolution,setResolution}) {
-    const [selectedCountry, setSelectedCountry] = useState(null);
-    const countries = useMemo(() => countryList().getData(), [])
+export default function DesignForm({
+  setRegion,
+  region,
+  handleFileChange,
+  handleSubmit,
+  resolution,
+  setResolution,
+  isLoading
+}) {
+  const [selectedCountry, setSelectedCountry] = React.useState(null);
+  const countries = React.useMemo(() => countryList().getData(), []);
 
-    const handleCountryChange = (selectedOption) => {
-      setSelectedCountry(selectedOption);
-      setRegion([]); 
-    };
-  
-    const handleCityChange = (selectedOptions) => {
-      const selectedRegions = selectedOptions.map(option => `${option.name}, ${selectedCountry.label}`);
-      setRegion(selectedRegions);
-    };
-    
-    const handleResolutionChange = (e) => {
-        const { name, value } = e.target;
-        setResolution(prev => ({ ...prev, [name]: parseInt(value) }));
-      };
+  const handleCountryChange = (selectedOption) => {
+    setSelectedCountry(selectedOption);
+    setRegion([]);
+  };
 
-    const cityOptions = selectedCountry 
-      ? City.getCitiesOfCountry(selectedCountry.value).map(city => ({
-          value: city.name,
-          label: city.name,
-          name: city.name
-        }))
-      : [];
+  const handleCityChange = (selectedOptions) => {
+    const selectedRegions = selectedOptions.map(
+      option => `${option.name}, ${selectedCountry.label}`
+    );
+    setRegion(selectedRegions);
+  };
+
+  const handleResolutionChange = (e) => {
+    const { name, value } = e.target;
+    setResolution(prev => ({ ...prev, [name]: parseInt(value) }));
+  };
+
+  const cityOptions = selectedCountry
+    ? City.getCitiesOfCountry(selectedCountry.value).map(city => ({
+        value: city.name,
+        label: city.name,
+        name: city.name
+      }))
+    : [];
 
   return (
-    <div className="px-4 py-5 sm:p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Design Prompt</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                        <FaUpload className="text-blue-500" />
-                      </div>
-                    </div>
-                    <div className="flex-grow">
-                      <label className="block text-lm font-medium text-gray-700">
-                        Brand and campaign details
-                      </label>
-                      <input
-                        type="file"
-                        onChange={(e) => handleFileChange(e)}
-                        className="mt-1 block w-full text-sm text-gray-500
-                          file:mr-4 file:py-2 file:px-4
-                          file:rounded-full file:border-0
-                          file:text-sm file:font-semibold
-                          file:bg-blue-50 file:text-blue-700
-                          hover:file:bg-blue-100"
-                      />
-                    </div>
-                </div>
-            <div className="space-y-4">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                        Country
-                    </label>
-                    <Select
-                        options={countries}
-                        value={selectedCountry}
-                        onChange={handleCountryChange}
-                        className="mt-1"
-                    />
-                </div>
-                <div>
-                <label className="block text-sm font-medium text-gray-700">
-                    Cities
-                </label>
-                    <Select
-                        isMulti
-                        name="cities"
-                        options={cityOptions}
-                        className="basic-multi-select mt-1"
-                        classNamePrefix="select"
-                        onChange={handleCityChange}
-                        value={cityOptions.filter(option => region.includes(`${option.name}, ${selectedCountry?.label}`))}
-                        placeholder="Select cities..."
-                        isDisabled={!selectedCountry}
-                    />
-                </div>
-            </div>
-        </div>
+    <Card className="backdrop-blur-lg bg-white/10 border border-white/20">
+      <form onSubmit={handleSubmit}>
+        <CardHeader>
+          <h2 className="text-2xl font-bold ">Design Your Campaign</h2>
+          <p className="text-300">
+            Upload your brand details and customize your campaign settings
+          </p>
+        </CardHeader>
 
-        <div className="space-y-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Image Resolution
-            </label>
-            <div className="flex space-x-4">
-              <div className="flex-1">
-                <label className="block text-xs text-gray-500">Width: {resolution.width}px</label>
+        <CardContent className="space-y-8">
+          <div className="space-y-4">
+            <div className="flex items-center mb-2">
+              <FaFileUpload className="mr-2" />
+              <label className="text-lg font-medium">Brand Document</label>
+            </div>
+            <FileUpload onFileChange={handleFileChange} />
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex items-center mb-2">
+              <FaGlobe className="mr-2" />
+              <label className="text-lg font-medium">Target Locations</label>
+            </div>
+            <Select
+              options={countries}
+              value={selectedCountry}
+              onChange={handleCountryChange}
+              className="react-select-container"
+              classNamePrefix="react-select"
+              placeholder="Select a country..."
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  borderColor: 'rgba(255, 255, 255, 0.2)',
+                  '&:hover': {
+                    borderColor: 'rgba(255, 255, 255, 0.3)'
+                  }
+                }),
+                menu: (base) => ({
+                  ...base,
+                  background: 'rgba(30, 41, 59, 0.95)',
+                  backdropFilter: 'blur(8px)'
+                }),
+                option: (base, state) => ({
+                  ...base,
+                  background: state.isFocused ? 'rgba(59, 130, 246, 0.5)' : 'transparent',
+                  color: 'gray'
+                }),
+                singleValue: (base) => ({
+                  ...base,
+                  color: 'gray'
+                }),
+                placeholder: (base) => ({
+                  ...base,
+                  color: 'rgba(0, 0, 0, 0.5)'
+                })
+              }}
+            />
+
+            <Select
+              isMulti
+              options={cityOptions}
+              onChange={handleCityChange}
+              className="react-select-container"
+              classNamePrefix="react-select"
+              placeholder="Select cities..."
+              isDisabled={!selectedCountry}
+              value={cityOptions.filter(option => 
+                region.includes(`${option.name}, ${selectedCountry?.label}`)
+              )}
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  background: 'rgba(0, 0, 0, 0.1)',
+                  borderColor: 'rgba(255, 255, 255, 0.2)',
+                  '&:hover': {
+                    borderColor: 'rgba(255, 255, 255, 0.3)'
+                  }
+                }),
+                menu: (base) => ({
+                  ...base,
+                  background: 'rgba(30, 41, 59, 0.95)',
+                  backdropFilter: 'blur(8px)'
+                }),
+                option: (base, state) => ({
+                  ...base,
+                  background: state.isFocused ? 'rgba(59, 130, 246, 0.5)' : 'transparent',
+                  color: 'white'
+                }),
+                multiValue: (base) => ({
+                  ...base,
+                  background: 'rgba(59, 130, 246, 0.3)'
+                }),
+                multiValueLabel: (base) => ({
+                  ...base,
+                  color: 'white'
+                }),
+                multiValueRemove: (base) => ({
+                  ...base,
+                  color: 'white',
+                  ':hover': {
+                    background: 'rgba(239, 68, 68, 0.5)',
+                    color: 'white'
+                  }
+                })
+              }}
+            />
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex items-center mb-2">
+              <FaRuler className="mr-2" />
+              <label className="text-lg font-medium">Ad Resolution</label>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <label>Width</label>
+                  <span>{resolution.width}px</span>
+                </div>
                 <input
                   type="range"
                   name="width"
                   min="320"
                   max="3840"
+                  step="16"
                   value={resolution.width}
                   onChange={handleResolutionChange}
-                  className="w-full"
+                  className="w-full h-2 bg-blue-500/30 rounded-lg appearance-none cursor-pointer"
+                  style={{
+                    background: `linear-gradient(to right, rgb(59, 130, 246) ${(resolution.width - 320) / (3840 - 320) * 100}%, rgba(59, 130, 246, 0.3) ${(resolution.width - 320) / (3840 - 320) * 100}%)`
+                  }}
                 />
               </div>
-              <div className="flex-1">
-                <label className="block text-xs text-gray-500">Height: {resolution.height}px</label>
+              <div className="space-y-2">
+                <div className="flex justify-between ">
+                  <label>Height</label>
+                  <span>{resolution.height}px</span>
+                </div>
                 <input
                   type="range"
                   name="height"
                   min="240"
                   max="2160"
+                  step="16"
                   value={resolution.height}
                   onChange={handleResolutionChange}
-                  className="w-full"
+                  className="w-full h-2 bg-blue-500/30 rounded-lg appearance-none cursor-pointer"
+                  style={{
+                    background: `linear-gradient(to right, rgb(59, 130, 246) ${(resolution.height - 240) / (2160 - 240) * 100}%, rgba(59, 130, 246, 0.3) ${(resolution.height - 240) / (2160 - 240) * 100}%)`
+                  }}
                 />
               </div>
             </div>
           </div>
-              <div className="mt-8">
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Submit Design Prompt
-                </button>
-              </div>
-            </form>
-            </div>
-  )
+        </CardContent>
+
+        <CardFooter className="flex justify-end" >
+        <Button
+          className="font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+          type="submit"
+          size="lg"
+          disabled={isLoading}
+          style={{
+            background: 'linear-gradient(to bottom right, #4361ee, #fefae0, #822faf)',
+            color:'black'
+          }}
+          onMouseOver={(e) => (e.target.style.background = 'linear-gradient(to bottom right, #3b55d3, #ebe8c7, #7427d4)')}
+          onMouseOut={(e) => (e.target.style.background = 'linear-gradient(to bottom right, #4361ee, #fefae0, #822faf)')}
+          >
+            {isLoading ? 'Creating Campaign...' : 'Generate Campaign'}
+          </Button>
+        </CardFooter>
+      </form>
+    </Card>
+  );
 }
