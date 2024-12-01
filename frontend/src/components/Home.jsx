@@ -4,8 +4,9 @@ export default function Home({isDarkMode}) {
   return (
     <>
     <div className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'} transition-colors duration-300`}>
-
-     <div className="min-h-screen">
+      <div className="home-wrapper">
+        <div className='content-overlay'>
+     <div className="min-h-screen ">
 
       <main className="container mx-auto py-12 px-6 md:px-12 lg:px-24">
         <section className="mb-16 bg-white p-8 rounded-lg shadow-md">
@@ -26,23 +27,23 @@ export default function Home({isDarkMode}) {
         </section>
 
         <section className="mb-16">
-          <h2 className="text-3xl font-semibold mb-6 text-blue-600">Current Trends We Leverage</h2>
+          <h2 className="text-3xl text-center font-semibold mb-6 text-white-600">Current Trends We Leverage</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold mb-3 text-blue-500">AI-Powered Design Generation</h3>
-              <p className="text-gray-700">Utilize advanced algorithms to create visually stunning poster designs tailored to brand guidelines and campaign objectives.</p>
+              <p className="text-gray-700">Utilize advanced algorithms to create visually stunning Ad designs tailored to brand guidelines and campaign objectives.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold mb-3 text-blue-500">Dynamic Content Personalization</h3>
-              <p className="text-gray-700">Generate posters with personalized elements based on target demographics, locations, or individual consumer data.</p>
+              <p className="text-gray-700">Generate Ad with personalized elements based on target demographics, locations, or individual consumer data.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold mb-3 text-blue-500">Multi-Format Optimization</h3>
-              <p className="text-gray-700">Automatically adapt poster designs for various formats including digital displays, print media, and social media platforms.</p>
+              <p className="text-gray-700">Automatically adapt Ad designs for various formats including digital displays and social media platforms.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold mb-3 text-blue-500">Real-Time Campaign Insights</h3>
-              <p className="text-gray-700">Provide analytics on poster performance, allowing for rapid iteration and optimization of designs based on audience engagement.</p>
+              <p className="text-gray-700">Provide analytics on Ad performance, allowing for rapid iteration and optimization of designs based on audience engagement.</p>
             </div>
           </div>
         </section>
@@ -50,7 +51,7 @@ export default function Home({isDarkMode}) {
         <section className="bg-white p-8 rounded-lg shadow-md">
           <h2 className="text-3xl font-semibold mb-6 text-blue-600">Why Choose AdGenius?</h2>
           <ul className="list-disc list-inside text-lg space-y-2 text-gray-700">
-            <li>Unparalleled high-volume poster generation capability</li>
+            <li>Unparalleled high-volume Ad generation capability</li>
             <li>Cutting-edge AI technology for creative and personalized designs</li>
             <li>Seamless integration with major advertising platforms and print services</li>
             <li>Data-driven insights for continuous campaign improvement</li>
@@ -59,6 +60,8 @@ export default function Home({isDarkMode}) {
           </ul>
         </section>
       </main>
+    </div>
+    </div>
     </div>
     </div>
     </>
